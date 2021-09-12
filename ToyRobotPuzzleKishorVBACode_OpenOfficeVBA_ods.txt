@@ -1,0 +1,304 @@
+REM  *****  BASIC  *****
+'Copy and Paste the complete code in the OpenOffice Spreadsheet VBA Macro 'Editor and run the code for supplied OffenOffice Spreadsheet)
+
+'Cell = Sheet.getCellByPosition(4, 1)
+'Celladdress.sheet=0
+'CellAddress.Column = 5
+'CellAddress.Row = 1
+
+Sub Main
+
+Dim Doc As Object
+Dim Sheet As Object
+dim tempsheet as Object
+dim commandrow as integer
+dim commandexist as string
+dim command as string 
+dim colindex as integer
+dim rowindex as integer
+dim direction as string
+
+	Example1()
+	
+	Example2()
+	
+	Example3()
+
+End Sub
+
+
+Function Example1()
+
+	commandexist="Y"
+	commandrow=13 
+	
+	Doc = ThisComponent
+	Sheet = Doc.Sheets(0)
+	
+	Cell = Sheet.getCellByPosition(0,commandrow)
+	command=Cell.String
+	
+	do while commandexist ="Y" 
+	' If no commmands then Exit the program
+		if command="" then
+		msgbox "Please check the result in result column" 
+		exit function
+	' If additional commands then progress forward	
+		else
+	' Process the PLACE command
+			if command = "PLACE" then
+				Cell = Sheet.getCellByPosition(1,commandrow)
+				colindex = Cell.value
+			 	Cell = Sheet.getCellByPosition(2,commandrow)
+				rowindex = Cell.value
+				Cell = Sheet.getCellByPosition(3,commandrow)
+				direction = Cell.String
+			endif
+	'Process the Move command		
+			if command = "MOVE" then
+				if direction = "WEST" then 
+					colindex=colindex-1 
+				endif
+				if direction = "EAST" then 
+					colindex=colindex+1 
+				endif
+				if direction = "NORTH" then 
+					rowindex=rowindex+1 
+				endif
+				if direction = "SOUTH" then 
+					rowindex=rowindex-1 
+				endif		
+			endif
+	' Process the Left command	
+			if command = "LEFT" then 
+				if direction = "NORTH" then  
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="EAST"
+				elseif direction = "EAST" then 
+					direction ="NORTH"
+				endif	
+			endif
+	' Process the Right Command	
+			if command = "RIGHT" then
+				if direction = "NORTH" then  
+					direction="EAST"
+				elseif direction = "EAST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="NORTH"
+				endif		
+			endif
+		
+	' Process the Report Command
+			if command = "REPORT" then 
+				Cell = Sheet.getCellByPosition(1,24)
+				cell.value = colindex
+				Cell = Sheet.getCellByPosition(2,24)
+				cell.value = rowindex
+				Cell = Sheet.getCellByPosition(3,24)
+				cell.String = direction
+			endif
+		Endif	
+		
+		commandrow=commandrow+1
+		Cell = Sheet.getCellByPosition(0,commandrow)
+	    command=Cell.String
+	    if command="" then
+	    	commansdexist="N"
+	    end if
+	
+	Loop
+End Function
+
+Function Example2()
+
+	commandexist="Y"
+	commandrow=13 
+	
+	Doc = ThisComponent
+	Sheet = Doc.Sheets(0)
+	
+	Cell = Sheet.getCellByPosition(5,commandrow)
+	command=Cell.String
+	
+	do while commandexist ="Y" 
+	' If no commmands then Exit the program
+		if command="" then
+		'msgbox "Please check the result in result column" 
+		exit function
+	' If additional commands then progress forward	
+		else
+	' Process the PLACE command
+			if command = "PLACE" then
+				Cell = Sheet.getCellByPosition(6,commandrow)
+				colindex = Cell.value
+			 	Cell = Sheet.getCellByPosition(7,commandrow)
+				rowindex = Cell.value
+				Cell = Sheet.getCellByPosition(8,commandrow)
+				direction = Cell.String
+			endif
+	'Process the Move command		
+			if command = "MOVE" then
+				if direction = "WEST" then 
+					colindex=colindex-1 
+				endif
+				if direction = "EAST" then 
+					colindex=colindex+1 
+				endif
+				if direction = "NORTH" then 
+					rowindex=rowindex+1 
+				endif
+				if direction = "SOUTH" then 
+					rowindex=rowindex-1 
+				endif		
+			endif
+	' Process the Left command	
+			if command = "LEFT" then 
+				if direction = "NORTH" then  
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="EAST"
+				elseif direction = "EAST" then 
+					direction ="NORTH"
+				endif	
+			endif
+	' Process the Right Command	
+			if command = "RIGHT" then
+				if direction = "NORTH" then  
+					direction="EAST"
+				elseif direction = "EAST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="NORTH"
+				endif		
+			endif
+		
+	' Process the Report Command
+			if command = "REPORT" then 
+				Cell = Sheet.getCellByPosition(6,24)
+				cell.value = colindex
+				Cell = Sheet.getCellByPosition(7,24)
+				cell.value = rowindex
+				Cell = Sheet.getCellByPosition(8,24)
+				cell.String = direction
+			endif
+		Endif	
+		
+		commandrow=commandrow+1
+		Cell = Sheet.getCellByPosition(5,commandrow)
+	    command=Cell.String
+	    if command="" then
+	    	commansdexist="N"
+	    end if
+	
+	Loop
+End function
+
+Function Example3()
+
+	commandexist="Y"
+	commandrow=13 
+	
+	Doc = ThisComponent
+	Sheet = Doc.Sheets(0)
+	
+	Cell = Sheet.getCellByPosition(10,commandrow)
+	command=Cell.String
+	
+	do while commandexist ="Y" 
+	' If no commmands then Exit the program
+		if command="" then
+		'msgbox "Please check the result in result column" 
+		exit function
+	' If additional commands then progress forward	
+		else
+	' Process the PLACE command
+			if command = "PLACE" then
+				Cell = Sheet.getCellByPosition(11,commandrow)
+				colindex = Cell.value
+			 	Cell = Sheet.getCellByPosition(12,commandrow)
+				rowindex = Cell.value
+				Cell = Sheet.getCellByPosition(13,commandrow)
+				direction = Cell.String
+			endif
+	'Process the Move command		
+			if command = "MOVE" then
+				if direction = "WEST" then 
+					colindex=colindex-1 
+				endif
+				if direction = "EAST" then 
+					colindex=colindex+1 
+				endif
+				if direction = "NORTH" then 
+					rowindex=rowindex+1 
+				endif
+				if direction = "SOUTH" then 
+					rowindex=rowindex-1 
+				endif		
+			endif
+	' Process the Left command	
+			if command = "LEFT" then 
+				if direction = "NORTH" then  
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="EAST"
+				elseif direction = "EAST" then 
+					direction ="NORTH"
+				endif	
+			endif
+	' Process the Right Command	
+			if command = "RIGHT" then
+				if direction = "NORTH" then  
+					direction="EAST"
+				elseif direction = "EAST" then 
+					direction ="SOUTH"
+				elseif direction = "SOUTH" then 
+					direction ="WEST"
+				elseif direction = "WEST" then 
+					direction ="NORTH"
+				endif		
+			endif
+		
+	' Process the Report Command
+			if command = "REPORT" then 
+				Cell = Sheet.getCellByPosition(11,24)
+				cell.value = colindex
+				Cell = Sheet.getCellByPosition(12,24)
+				cell.value = rowindex
+				Cell = Sheet.getCellByPosition(13,24)
+				cell.String = direction
+			endif
+		Endif	
+		
+		commandrow=commandrow+1
+		Cell = Sheet.getCellByPosition(10,commandrow)
+	    command=Cell.String
+	    if command="" then
+	    	commansdexist="N"
+	    end if
+	
+	Loop
+End Function
+
+Function matrixrange (col as integer, row as integer)
+	If ((Col>6) OR (Col<2)) then
+		matrixrange=0
+	else
+			If ((row>6) OR (row<2)) then
+			matrixrange=0
+		else
+			matrixrange=1
+		endif 
+	endif
+End function
